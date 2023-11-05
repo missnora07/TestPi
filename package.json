@@ -1,0 +1,14 @@
+{
+  "name": "sketch-api",
+  "version": "1.0.0",
+  "description": "API for converting images to sketches",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "canvas": "^2.8.0",
+    "express": "^4.17.1",
+    "body-parser": "^1.19.0"
+  }
+}
