@@ -8,6 +8,20 @@ const port = 3000;
 
 app.use(bodyParser.json());
 
+// Include the filter and generateSketch functions here
+
+const filter = (ctx, image, filters = "") => {
+  ctx.filter = filters;
+  ctx.drawImage(image, 0, 0);
+};
+
+const generateSketch = (ctx, bnw, blur) => {
+  ctx.drawImage(bnw, 0, 0, bnw.width, bnw.height);
+  ctx.globalCompositeOperation = 'color-dodge';
+  ctx.drawImage(blur, 0, 0, bnw.width, bnw.height);
+};
+
+// API endpoint
 app.post('/convertToSketch', async (req, res) => {
   try {
     const { imageUrl } = req.body;
@@ -32,6 +46,7 @@ app.post('/convertToSketch', async (req, res) => {
     const fileName = `sketch_${Date.now()}.png`;
     const filePath = `path/to/save/${fileName}`;
     fs.writeFileSync(filePath, resultBuffer);
+
     res.json({ success: true, sketchUrl: `your_domain/${fileName}` });
   } catch (error) {
     console.error(error);
