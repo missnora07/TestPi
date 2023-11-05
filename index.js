@@ -32,7 +32,6 @@ app.post('/convertToSketch', async (req, res) => {
     const fileName = `sketch_${Date.now()}.png`;
     const filePath = `path/to/save/${fileName}`;
     fs.writeFileSync(filePath, resultBuffer);
-
     res.json({ success: true, sketchUrl: `your_domain/${fileName}` });
   } catch (error) {
     console.error(error);
